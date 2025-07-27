@@ -1,39 +1,46 @@
 services:
   thedocs-app:
-    image: thedocs-app:latest
+    image: thedocs-app:0.1.0
     container_name: thedocs_app
     restart: unless-stopped
     ports:
-      - "${THEDOCSAPP_PORT}:${THEDOCSAPP_PORT}"
+      - "${THEDOCSAPP_PORT}:3000"
     env_file:
       - .env
     volumes:
       - thedocs_app:/usr/local/src/thedocs
-db:
-    image: postgres:17-alpine
-    container_name: thedocs_db
-    restart: unless-stopped
-    user: ${POSTGRES_SYSTEM_OWNERSHIP}
-    env_file:
-      - .env
-    environment:
-      - PGDATA=/var/lib/postgresql/data/thedocs_meta
-    ports:
-        - 5432:5432
-    volumes:
-        - thedocs_db:/var/lib/postgresql/data
-pgadmin:
-    image: dpage/pgadmin4
-    restart: unless-stopped
-    user: ${SYSTEM_OWNERSHIP}
-    ports:
-      - "${PGADMIN_PORT}:8080"
-    env_file:
-      - .env
-    environment:
-      - "PGADMIN_LISTEN_PORT=8080"
-      - "PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}"
-      - "PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}"
-      - "PGADMIN_CONFIG_LOGIN_BANNER='The Docs DB. Authorized users only.'"
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
+  db:
+      image: postgres:17-alpine
+      container_name: thedocs_db
+      restart: unless-stopped
+      user: ${SYSTEM_OWNERSHIP}
+      env_file:
+        - .env
+      environment:
+        - PGDATA=/var/lib/postgresql/data/thedocs_meta
+      ports:
+          - 5432:5432
+      volumes:
+          - thedocs_db:/var/lib/postgresql/data
+  pgadmin:
+      image: dpage/pgadmin4
+      restart: unless-stopped
+      user: ${SYSTEM_OWNERSHIP}
+      ports:
+        - "${PGADMIN_PORT}:8080"
+      env_file:
+        - .env
+      environment:
+        - "PGADMIN_LISTEN_PORT=8080"
+        - "PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}"
+        - "PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}"
+        - "PGADMIN_CONFIG_LOGIN_BANNER='The Docs DB. Authorized users only.'"
+      volumes:
+        - pgadmin_data:/var/lib/pgadmin
+volumes:
+  thedocs_app:
+    driver: local
+  thedocs_db:
+    driver: local
+  pgadmin_data:
+    driver: local
