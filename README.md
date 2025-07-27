@@ -6,7 +6,7 @@ Made with ❤️ by [Sean De Gee](https://github.com/SeanDeGeeDev) for [Sintrex 
 
 - OS: Ubuntu 24.04.1 LTS
 - Bun: 1.2.19
-- Docker: 28.3.1
+- Docker: 28.3.2
 
 ## Getting Started - Production
 
