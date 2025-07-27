@@ -1,0 +1,14 @@
+{
+  "name": "thedocs",
+  "version": "0.1.0",
+  "author": "Sean De Gee",
+  "description": "The Docs",
+  "license": "MIT",
+  "packageManager": "bun@1.2.19",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "modules/*",
+    "types/*"
+  ]
+}
