@@ -1,6 +1,6 @@
 services:
   thedocs-app:
-    image: thedocs-app:0.1.0
+    image: thedocs-app:${VERSION}
     container_name: thedocs_app
     restart: unless-stopped
     ports:

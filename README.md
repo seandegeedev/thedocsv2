@@ -32,3 +32,9 @@ git clone https://[username]:[development_token]@gitlab.sintrex.com/thedocs.git
 Within the `src` folder, using the provided `template.env` create a `.env` file and define/change any needed environment variables within.
 
 > ⚠️ Note: All variables within the `.env` file are required. Most variables are defined for you, but there are a few that are left blank or have used placeholders (marked with and 👈) and will need to be defined
+
+### Load release images
+
+```bash
+docker load -i ./release/thedocs-app:[VERSION].tar
+```
