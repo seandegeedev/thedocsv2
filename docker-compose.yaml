@@ -1,6 +1,6 @@
 services:
-  thedocs-app:
-    image: thedocs-app:${VERSION}
+  the-docs-app:
+    image: the-docs-app:${VERSION}
     container_name: thedocs_app
     restart: unless-stopped
     ports:
@@ -8,10 +8,10 @@ services:
     env_file:
       - .env
     volumes:
-      - thedocs_app:/usr/local/src/thedocs
+      - the-docs_app:/usr/local/src/thedocs
   db:
       image: postgres:17-alpine
-      container_name: thedocs_db
+      container_name: the-docs_db
       restart: unless-stopped
       user: ${SYSTEM_OWNERSHIP}
       env_file:
@@ -21,7 +21,7 @@ services:
       ports:
           - 5432:5432
       volumes:
-          - thedocs_db:/var/lib/postgresql/data
+          - the-docs_db:/var/lib/postgresql/data
   pgadmin:
       image: dpage/pgadmin4
       restart: unless-stopped
